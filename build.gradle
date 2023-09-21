@@ -12,6 +12,9 @@ dependencies {
     // jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    // validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
     // mariadb jdbc driver
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
@@ -29,7 +32,7 @@ sourceSets {
     main.java.srcDirs += [ querydslDir ]
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
 }
 
