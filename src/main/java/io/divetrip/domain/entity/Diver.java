@@ -1,7 +1,9 @@
 package io.divetrip.domain.entity;
 
-import io.divetrip.domain.enumeration.Gender;
+import io.divetrip.domain.entity.enumeration.Gender;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -16,12 +18,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
 @Entity
 @Table(name = "DIVER", uniqueConstraints = {
         @UniqueConstraint(name = "uc_diver_email", columnNames = {"email"})
 })
-@NoArgsConstructor
-@Getter
 public class Diver implements Serializable {
 
     @Serial

@@ -1,4 +1,4 @@
-package io.divetrip.domain.enumeration;
+package io.divetrip.domain.entity.enumeration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

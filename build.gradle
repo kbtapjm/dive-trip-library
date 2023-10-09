@@ -4,20 +4,11 @@ buildscript {
     }
 }
 
-//plugins {
-//
-//}
+plugins {
+
+}
 
 dependencies {
-    // jpa
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    // validation
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-    // mariadb jdbc driver
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-
     // querydsl
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
