@@ -1,6 +1,5 @@
 package io.divetrip.domain.entity.enumeration;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

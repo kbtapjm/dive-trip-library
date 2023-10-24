@@ -10,6 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
@@ -26,6 +27,7 @@ import java.util.UUID;
 @Table(name = "DIVER", uniqueConstraints = {
         @UniqueConstraint(name = "uc_diver_email", columnNames = {"email"})
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Diver implements Serializable {
 
     @Serial
@@ -97,11 +99,11 @@ public class Diver implements Serializable {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @Column(name = "update_by", nullable = false, length = 20, insertable = false, updatable = true)
+    @Column(name = "update_by", nullable = true, length = 20, insertable = false, updatable = true)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String updatedBy;
 
-    @Column(name = "updated_at", nullable = false, insertable = false, updatable = true)
+    @Column(name = "updated_at", nullable = true, insertable = false, updatable = true)
     @JdbcTypeCode(SqlTypes.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @LastModifiedDate
