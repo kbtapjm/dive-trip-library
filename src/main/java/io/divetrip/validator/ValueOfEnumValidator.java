@@ -3,12 +3,10 @@ package io.divetrip.validator;
 import io.divetrip.validator.valid.EnumValue;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
-@Slf4j
 public class ValueOfEnumValidator implements ConstraintValidator<EnumValue, String> {
 
     private EnumValue enumValue;
