@@ -21,7 +21,7 @@ public @interface EnumValue {
     Class<? extends Enum<?>> enumClass();
 
     // 오류 발생 시 생성할 메세지
-    String message() default "";
+    String message() default "{invalid.type.value}";
 
     // 상황별 validation 제어를 위해 사용
     Class<?>[] groups() default {};
