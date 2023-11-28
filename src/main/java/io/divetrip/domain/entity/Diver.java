@@ -109,4 +109,18 @@ public class Diver implements Serializable {
     @LastModifiedDate
     private LocalDateTime updateAt;
 
+    public void update(String familyName, String givenName, Gender gender, LocalDate birthday, String nationality, String countryCode,
+                       String contactNumber, String passportNo, LocalDate passportExpiryDate, Boolean licensed) {
+        this.familyName = familyName;
+        this.givenName = givenName;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.nationality = nationality;
+        this.countryCode = countryCode;
+        this.contactNumber = contactNumber;
+        this.passportNo = passportNo;
+        this.passportExpiryDate = passportExpiryDate;
+        this.licensed = licensed;
+    }
+
 }

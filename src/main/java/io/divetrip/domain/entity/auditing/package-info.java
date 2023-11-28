@@ -1,0 +1,1 @@
+package io.divetrip.domain.entity.auditing;
