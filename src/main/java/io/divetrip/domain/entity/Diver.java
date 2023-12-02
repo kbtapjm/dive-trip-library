@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,7 +44,7 @@ public class Diver implements Serializable {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 15)
+    @Column(name = "password", nullable = false, length = 100)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String password;
 
@@ -101,6 +102,7 @@ public class Diver implements Serializable {
 
     @Column(name = "update_by", nullable = true, length = 20, insertable = false, updatable = true)
     @JdbcTypeCode(SqlTypes.VARCHAR)
+    @LastModifiedBy
     private String updatedBy;
 
     @Column(name = "updated_at", nullable = true, insertable = false, updatable = true)
