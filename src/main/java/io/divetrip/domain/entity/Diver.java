@@ -125,4 +125,8 @@ public class Diver implements Serializable {
         this.licensed = licensed;
     }
 
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
 }
