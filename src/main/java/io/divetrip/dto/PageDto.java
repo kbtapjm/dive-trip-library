@@ -14,20 +14,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PageDto {
-    private int pageNo;
+    private int pageNumber;
     private int pageSize;
-    private int totalCount;
+    private int totalElements;
+    private int totalPages;
 
     @Builder
-    public PageDto(int pageNo, int pageSize) {
-        this.pageNo = pageNo - 1;
+    public PageDto(int pageNumber, int pageSize) {
+        this.pageNumber = pageNumber - 1;
         this.pageSize = pageSize;
     }
 
-    public void setPage(int pageNo, int pageSize, long totalCount) {
-        this.pageNo = pageNo + 1;
+    public void setPage(int pageNumber, int pageSize, long totalElements, int totalPages) {
+        this.pageNumber = pageNumber + 1;
         this.pageSize = pageSize;
-        this.totalCount = (int) totalCount;
+        this.totalElements = (int) totalElements;
+        this.totalPages = totalPages;
     }
 
     @Override
