@@ -100,7 +100,7 @@ public class Diver implements Serializable {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @Column(name = "update_by", nullable = true, length = 20, insertable = false, updatable = true)
+    @Column(name = "updated_by", nullable = true, length = 20, insertable = false, updatable = true)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     @LastModifiedBy
     private String updatedBy;
@@ -109,7 +109,7 @@ public class Diver implements Serializable {
     @JdbcTypeCode(SqlTypes.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @LastModifiedDate
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
     public void update(String familyName, String givenName, Gender gender, LocalDate birthday, String nationality, String countryCode,
                        String contactNumber, String passportNo, LocalDate passportExpiryDate, Boolean licensed) {
