@@ -1,7 +1,20 @@
 package io.divetrip.domain.entity;
 
+import io.divetrip.domain.entity.embedable.Address;
 import io.divetrip.domain.entity.enumeration.Gender;
-import jakarta.persistence.*;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -90,6 +103,14 @@ public class Diver implements Serializable {
     @JdbcTypeCode(SqlTypes.BOOLEAN)
     private Boolean licensed;
 
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "city", length = 50)),
+            @AttributeOverride(name = "street", column = @Column(name = "street", length = 200)),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "zip_code", length = 5))
+    })
+    private Address address;
+
     @Column(name = "created_by", nullable = false, length = 20, insertable = true, updatable = false)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String createdBy;
@@ -112,7 +133,7 @@ public class Diver implements Serializable {
     private LocalDateTime updatedAt;
 
     public void update(String familyName, String givenName, Gender gender, LocalDate birthday, String nationality, String countryCode,
-                       String contactNumber, String passportNo, LocalDate passportExpiryDate, Boolean licensed) {
+                       String contactNumber, String passportNo, LocalDate passportExpiryDate, Boolean licensed, String city, String street, String zipCode) {
         this.familyName = familyName;
         this.givenName = givenName;
         this.gender = gender;
@@ -123,6 +144,7 @@ public class Diver implements Serializable {
         this.passportNo = passportNo;
         this.passportExpiryDate = passportExpiryDate;
         this.licensed = licensed;
+        this.address = Address.builder().city(city).street(street).zipCode(zipCode).build();
     }
 
     public void changePassword(String password) {
