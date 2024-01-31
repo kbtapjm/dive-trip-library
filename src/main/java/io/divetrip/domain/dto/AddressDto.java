@@ -1,4 +1,4 @@
-package io.divetrip.dto;
+package io.divetrip.domain.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

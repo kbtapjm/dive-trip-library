@@ -18,13 +18,12 @@ import org.springframework.data.domain.Sort;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class SortDto {
-
     private String sort;
     private String orderBy;
 
     @JsonIgnore
     public Sort getPageSort() {
-        Sort sort = null;
+        Sort sort;
 
         if (StringUtils.isNotEmpty(this.orderBy)) {
             sort = Sort.by(StringUtils.equals(this.orderBy, "asc") ? Sort.Direction.ASC : Sort.Direction.DESC, this.sort);
@@ -34,5 +33,4 @@ public class SortDto {
 
         return sort;
     }
-
 }
