@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -120,5 +121,36 @@ public class Vessel extends BaseEntity {
     /* 선박 선실 */
     @OneToMany(mappedBy = "vessel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VesselCabin> vesselCabins = new ArrayList<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.used = true;
+    }
+
+    public void update(String vesselName, VesselStatus vesselStatus, int totalGuests, int crew, int numberCabins, String length, String width, String hull,
+                       String crusingSpeed, String engine, String generator, String compressor, String nitrox, String dinghy, String waterMakers, String freshWaterTank, String dieselTank, String range) {
+        this.vesselName = vesselName;
+        this.vesselStatus = vesselStatus;
+        this.totalGuests = totalGuests;
+        this.crew = crew;
+        this.numberCabins = numberCabins;
+        this.length = length;
+        this.width = width;
+        this.hull = hull;
+        this.crusingSpeed = crusingSpeed;
+        this.engine = engine;
+        this.generator = generator;
+        this.compressor = compressor;
+        this.nitrox = nitrox;
+        this.dinghy = dinghy;
+        this.waterMakers = waterMakers;
+        this.freshWaterTank = freshWaterTank;
+        this.dieselTank = dieselTank;
+        this.range = range;
+    }
+
+    public void changeUsed(Boolean used) {
+        this.used = used;
+    }
 
 }
