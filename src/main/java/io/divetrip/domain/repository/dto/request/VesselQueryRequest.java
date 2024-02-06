@@ -21,5 +21,4 @@ public class VesselQueryRequest {
 
     /* 사용 여부 */
     private Boolean used;
-
 }

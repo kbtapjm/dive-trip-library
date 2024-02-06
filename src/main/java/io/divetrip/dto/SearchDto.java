@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Sort;
 
@@ -16,6 +17,8 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SearchDto {
@@ -46,4 +49,5 @@ public class SearchDto {
         private String searchColumn;
         private String searchValue;
     }
+
 }
