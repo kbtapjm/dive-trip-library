@@ -40,7 +40,7 @@ public class VesselCabin extends BaseEntity {
     private String cabinName;
 
     /* 설명 */
-    @Column(name = "description", length = 100)
+    @Column(name = "description", length = 500)
     private String description;
 
     /* 크기 */
@@ -52,7 +52,7 @@ public class VesselCabin extends BaseEntity {
     private int maxOccupancy;
 
     /* 침구 */
-    @Column(name = "bedding", length = 20)
+    @Column(name = "bedding", length = 30)
     private String bedding;
 
     /* 실내 욕실 */
@@ -72,4 +72,14 @@ public class VesselCabin extends BaseEntity {
     @JoinColumn(name = "vessel_id", nullable = false, insertable = true, updatable = true)
     private Vessel vessel;
 
+    public void update(String cabinName, String description, String size, int maxOccupancy, String bedding, Boolean ensuiteBathroom, String aircon, Boolean used) {
+        this.cabinName = cabinName;
+        this.description = description;
+        this.size = size;
+        this.maxOccupancy = maxOccupancy;
+        this.bedding = bedding;
+        this.ensuiteBathroom = ensuiteBathroom;
+        this.aircon = aircon;
+        this.used = used;
+    }
 }
