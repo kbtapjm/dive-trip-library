@@ -19,8 +19,8 @@ public enum VesselStatus {
     private static final Map<String, VesselStatus> valueAndVesselStatusMap = new HashMap<>();
 
     static {
-        for (VesselStatus VesselStatus : VesselStatus.values()) {
-            valueAndVesselStatusMap.put(VesselStatus.toString(), VesselStatus);
+        for (VesselStatus vesselStatus : VesselStatus.values()) {
+            valueAndVesselStatusMap.put(vesselStatus.toString(), vesselStatus);
         }
     }
     public static VesselStatus findByValue(final String value) {
