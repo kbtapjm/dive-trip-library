@@ -2,6 +2,7 @@ package io.divetrip.domain.entity;
 
 import io.divetrip.domain.entity.auditing.BaseEntity;
 import io.divetrip.domain.entity.enumeration.TripStatus;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,6 +25,8 @@ import org.hibernate.type.SqlTypes;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -83,4 +87,21 @@ public class Trip extends BaseEntity {
     @JoinColumn(name = "vessel_id", nullable = false, insertable = true, updatable = true)
     private Vessel vessel;
 
+    /* 여행 일정 */
+    @Builder.Default
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TripSchedule> schedules = new ArrayList<>();
+
+    /* 여행 숙소 */
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<TripLodging> lodgings = new ArrayList<>();
+
+    public void addAllSchedules(List<TripSchedule> tripSchedules) {
+        this.schedules.addAll(tripSchedules);
+    }
+
+    public void addAllLodgings(List<TripLodging> tripLodgings) {
+        this.lodgings.addAll(tripLodgings);
+    }
 }
