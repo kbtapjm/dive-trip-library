@@ -97,6 +97,11 @@ public class Trip extends BaseEntity {
     @Builder.Default
     private List<TripLodging> lodgings = new ArrayList<>();
 
+    /* 여행 상태 이력 */
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<TripStatusHistory> statusHistorys = new ArrayList<>();
+
     public void addAllSchedules(List<TripSchedule> tripSchedules) {
         this.schedules.addAll(tripSchedules);
     }
