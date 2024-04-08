@@ -72,7 +72,12 @@ public class VesselRepositoryImpl implements VesselRepositoryCustom {
 
         JPAQuery<Long> count = queryFactory
                 .select(vessel.count())
-                .from(vessel);
+                .from(vessel)
+                .where(
+                        this.vesselNameContains(vesselQueryRequest.getVesselName()),
+                        this.vesselStatusEq(vesselQueryRequest.getVesselStatus()),
+                        this.usedEq(vesselQueryRequest.getUsed())
+                );
 
         return PageableExecutionUtils.getPage(results, pageable, count::fetchCount);
     }
