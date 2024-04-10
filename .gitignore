@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# excluded querydsl qfile
+/src/main/generated/

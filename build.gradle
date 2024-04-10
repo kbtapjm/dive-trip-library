@@ -1,27 +1,26 @@
-//plugins {
-//    id 'java'
-//}
-//
-//group 'io.divetrip'
-//version '0.0.1-SNAPSHOT'
-//
-//repositories {
-//    mavenCentral()
-//}
-//
-//dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-//}
-//
-//test {
-//    useJUnitPlatform()
-//}
-
+jar {
+    enabled = true
+}
 bootJar {
     enabled = false
 }
 
-jar {
-    enabled = true
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+// querydsl build options
+def querydslDir = "src/main/generated"
+
+sourceSets {
+    main.java.srcDirs += [ querydslDir ]
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
+}
+
+clean.doLast {
+    file(querydslDir).deleteDir()
 }
