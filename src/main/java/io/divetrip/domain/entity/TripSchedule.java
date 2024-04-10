@@ -44,7 +44,7 @@ public class TripSchedule extends BaseEntity {
     private LocalDate tripDate;
 
     /* 여행 여정 */
-    @Column(name = "itinerary", nullable = false, length = 500)
+    @Column(name = "itinerary", nullable = false, length = 2000)
     private String itinerary;
 
     /* 여행 ID */

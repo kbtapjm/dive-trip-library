@@ -15,4 +15,6 @@ public class TripQueryRequest {
     /* 여행 상태 */
     private TripStatus tripStatus;
 
+    /* 지역 */
+    private String area;
 }

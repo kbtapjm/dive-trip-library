@@ -109,4 +109,9 @@ public class Trip extends BaseEntity {
     public void addAllLodgings(List<TripLodging> tripLodgings) {
         this.lodgings.addAll(tripLodgings);
     }
+
+    public void addAllStatusHistorys(List<TripStatusHistory> tripStatusHistorys) {
+        this.statusHistorys.addAll(tripStatusHistorys);
+    }
+
 }
