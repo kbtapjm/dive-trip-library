@@ -89,11 +89,11 @@ public class Trip extends BaseEntity {
 
     /* 여행 일정 */
     @Builder.Default
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<TripSchedule> schedules = new ArrayList<>();
 
     /* 여행 숙소 */
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     private List<TripLodging> lodgings = new ArrayList<>();
 
@@ -114,4 +114,28 @@ public class Trip extends BaseEntity {
         this.statusHistorys.addAll(tripStatusHistorys);
     }
 
+    public void clearSchedules() {
+        this.getSchedules().clear();
+    }
+
+    public void clearLodgings() {
+        this.getLodgings().clear();
+    }
+
+    public void addStatusHistory(TripStatusHistory tripStatusHistory) {
+        this.statusHistorys.add(tripStatusHistory);
+    }
+
+    public void update(TripStatus tripStatus, LocalDateTime departureTime, LocalDateTime returnTime, String startPort, String endPort,
+                       String durations, Integer totalDives, Destination destination, Vessel vessel) {
+        this.tripStatus = tripStatus;
+        this.departureTime = departureTime;
+        this.returnTime = returnTime;
+        this.startPort = startPort;
+        this.endPort = endPort;
+        this.durations = durations;
+        this.totalDives = totalDives;
+        this.destination = destination;
+        this.vessel = vessel;
+    }
 }
