@@ -1,5 +1,6 @@
 package io.divetrip.domain.repository.dto.response;
 
+import com.querydsl.core.annotations.QueryProjection;
 import io.divetrip.domain.entity.enumeration.Continent;
 import lombok.Getter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -42,6 +43,21 @@ public class DestinationQueryResponse {
 
     /* 수정일 */
     private LocalDateTime updatedAt;
+
+    @QueryProjection
+    public DestinationQueryResponse(UUID destinationId, Continent continent, String area, String description, Long countryId, String iso, String countryName, String createdBy, LocalDateTime createdAt, String updatedBy, LocalDateTime updatedAt) {
+        this.destinationId = destinationId;
+        this.continent = continent;
+        this.area = area;
+        this.description = description;
+        this.countryId = countryId;
+        this.iso = iso;
+        this.countryName = countryName;
+        this.createdBy = createdBy;
+        this.createdAt = createdAt;
+        this.updatedBy = updatedBy;
+        this.updatedAt = updatedAt;
+    }
 
     @Override
     public String toString() {

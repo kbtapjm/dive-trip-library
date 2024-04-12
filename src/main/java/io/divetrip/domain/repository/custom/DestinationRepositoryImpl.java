@@ -1,13 +1,13 @@
 package io.divetrip.domain.repository.custom;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import io.divetrip.domain.entity.QCountry;
 import io.divetrip.domain.entity.QDestination;
 import io.divetrip.domain.entity.enumeration.Continent;
 import io.divetrip.domain.repository.dto.request.DestinationQueryRequest;
 import io.divetrip.domain.repository.dto.response.DestinationQueryResponse;
+import io.divetrip.domain.repository.dto.response.QDestinationQueryResponse;
 import io.divetrip.util.QueryDslUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,20 +28,18 @@ public class DestinationRepositoryImpl implements DestinationRepositoryCustom {
     @Override
     public List<DestinationQueryResponse> findAllBy(DestinationQueryRequest destinationQueryRequest) {
         return queryFactory
-                .select(
-                        Projections.fields(
-                                DestinationQueryResponse.class,
-                                destination.destinationId,
-                                destination.continent,
-                                destination.area,
-                                destination.description,
-                                destination.createdBy,
-                                destination.createdAt,
-                                destination.updatedBy,
-                                destination.updatedAt,
-                                country.countryId,
-                                country.iso,
-                                country.countryName
+                .select(new QDestinationQueryResponse(
+                        destination.destinationId,
+                        destination.continent,
+                        destination.area,
+                        destination.description,
+                        country.countryId,
+                        country.iso,
+                        country.countryName,
+                        destination.createdBy,
+                        destination.createdAt,
+                        destination.updatedBy,
+                        destination.updatedAt
                 ))
                 .from(destination).join(country).on(destination.country.eq(country))
                 .where(
