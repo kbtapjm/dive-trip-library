@@ -13,7 +13,7 @@ public enum TripStatus {
     RESERVATION("예약중"),
     CLOSED("마감"),
     CANCELED("취소"),
-    DONE("완료"),
+    DONE("완료")
     ;
 
     private final String description;

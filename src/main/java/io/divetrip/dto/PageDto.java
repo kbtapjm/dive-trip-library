@@ -32,6 +32,12 @@ public class PageDto {
         this.totalPages = totalPages;
     }
 
+    public void setPage(long totalElements, int totalPages) {
+        this.pageNumber = this.pageNumber + 1;
+        this.totalElements = (int) totalElements;
+        this.totalPages = totalPages;
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
