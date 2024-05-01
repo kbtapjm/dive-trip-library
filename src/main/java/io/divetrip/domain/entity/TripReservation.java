@@ -114,4 +114,16 @@ public class TripReservation extends BaseEntity {
         this.statusHistorys.add(tripReservationStatusHistory);
     }
 
+    public void update(ReservationStatus reservationStatus, Boolean paid, String departureFlightNumbers, LocalDateTime departureFlightDate,
+                                String arrivalFlightNumbers, LocalDateTime arrivalFlightDate, LocalDate lastDiveDate, Boolean agreeTerms, String note) {
+        this.reservationStatus = reservationStatus;
+        this.paid = paid;
+        this.departureFlightNumbers = departureFlightNumbers;
+        this.departureFlightDate = departureFlightDate;
+        this.arrivalFlightNumbers = arrivalFlightNumbers;
+        this.arrivalFlightDate = arrivalFlightDate;
+        this.lastDiveDate = lastDiveDate;
+        this.agreeTerms = agreeTerms;
+        this.note = note;
+    }
 }
