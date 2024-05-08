@@ -1,9 +1,11 @@
 package io.divetrip.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.divetrip.domain.entity.embedable.Address;
 import io.divetrip.domain.entity.enumeration.Gender;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -13,6 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -31,6 +34,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -47,62 +51,76 @@ public class Diver implements Serializable {
     @Serial
     private static final long serialVersionUID = 8228796667151229447L;
 
+    /* 다이버 ID */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "diver_id", nullable = false)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID diverId;
 
+    /* 이메일 */
     @Column(name = "email", nullable = false, length = 50)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String email;
 
+    /* 비밀번호 */
     @Column(name = "password", nullable = false, length = 100)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String password;
 
+    /* 성 */
     @Column(name = "family_name", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String familyName;
 
+    /* 이름 */
     @Column(name = "given_name", nullable = false, length = 50)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String givenName;
 
+    /* 성별 */
     @Column(name = "gender", nullable = false, length = 10)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    /* 생년월일 */
     @Column(name = "birthday", nullable = false)
     @JdbcTypeCode(SqlTypes.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
+    /* 국적 */
     @Column(name = "nationality", length = 20)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String nationality;
 
+    /* 국가 코드 */
     @Column(name = "country_code", length = 5)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String countryCode;
 
+    /* 전화처 */
     @Column(name = "contact_number", length = 15)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String contactNumber;
 
+    /* 여권 번호 */
     @Column(name = "passport_no", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String passportNo;
 
+    /* 여권 번호 만료일 */
     @Column(name = "passport_expiry_date", nullable = false)
     @JdbcTypeCode(SqlTypes.DATE)
     private LocalDate passportExpiryDate;
 
+    /* 라이센스 여부 */
     @Column(name = "licensed", nullable = false)
     @JdbcTypeCode(SqlTypes.BOOLEAN)
     private Boolean licensed;
 
+    /* 주소 정보 */
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "city", column = @Column(name = "city", length = 50)),
@@ -110,6 +128,10 @@ public class Diver implements Serializable {
             @AttributeOverride(name = "zipCode", column = @Column(name = "zip_code", length = 5))
     })
     private Address address;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "diver", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DiverRole> diverRoles = List.of();
 
     @Column(name = "created_by", nullable = false, length = 20, insertable = true, updatable = false)
     @JdbcTypeCode(SqlTypes.VARCHAR)
