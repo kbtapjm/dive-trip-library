@@ -25,6 +25,8 @@ public class DestinationRepositoryImpl implements DestinationRepositoryCustom {
     final QDestination destination = QDestination.destination;
     final QCountry country = QCountry.country;
 
+
+
     @Override
     public List<DestinationQueryResponse> findAllBy(DestinationQueryRequest destinationQueryRequest) {
         return queryFactory
@@ -48,6 +50,7 @@ public class DestinationRepositoryImpl implements DestinationRepositoryCustom {
                         this.countryIdEq(destinationQueryRequest.getCountryId())
                 )
                 .orderBy(destination.area.asc())
+                .setHint("org.hibernate.comment", "select destinations")
                 .fetch();
     }
 
