@@ -1,4 +1,4 @@
-package io.divetrip.config;
+package io.divetrip.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
