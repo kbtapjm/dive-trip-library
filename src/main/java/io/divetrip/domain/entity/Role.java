@@ -43,7 +43,11 @@ public class Role extends BaseEntity {
     @Column(name = "role_name", nullable = false, length = 30)
     private String roleName;
 
-    /* 다이버 역할 */
+    /* 비고 */
+    @Column(name = "note", length = 1000)
+    private String note;
+
+    /* 다이버 역할 목록 */
     @JsonBackReference
     @OneToMany(mappedBy = "role")
     private List<DiverRole> diverRoles = List.of();
