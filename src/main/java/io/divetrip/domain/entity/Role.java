@@ -52,4 +52,9 @@ public class Role extends BaseEntity {
     @OneToMany(mappedBy = "role")
     private List<DiverRole> diverRoles = List.of();
 
+    public void update(String roleName, String note) {
+        this.roleName = roleName;
+        this.note = note;
+    }
+
 }
