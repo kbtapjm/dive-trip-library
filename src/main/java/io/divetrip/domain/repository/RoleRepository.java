@@ -11,4 +11,6 @@ public interface RoleRepository extends JpaRepository<Role, UUID> {
 
     boolean existsByRoleCode(final String roleCode);
 
+    Role findByRoleCode(final String roleCode);
+
 }

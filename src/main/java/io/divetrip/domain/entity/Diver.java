@@ -173,4 +173,8 @@ public class Diver implements Serializable {
         this.password = password;
     }
 
+    public void addDiverRoles(List<DiverRole> diverRoles) {
+        this.diverRoles = diverRoles;
+    }
+
 }
