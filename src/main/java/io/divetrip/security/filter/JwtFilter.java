@@ -28,6 +28,10 @@ public class JwtFilter extends GenericFilterBean {
         String requestURI = httpServletRequest.getRequestURI();
 
         String bearerToken = this.getBearerToken(httpServletRequest);
+
+        log.debug("===> requestURI: {}", requestURI);
+        log.debug("===> bearerToken: {}", bearerToken);
+
         if (StringUtils.isNotEmpty(bearerToken) && jwtTokenProvider.validateToken(bearerToken)) {
             Authentication authentication = jwtTokenProvider.getAuthentication(bearerToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);

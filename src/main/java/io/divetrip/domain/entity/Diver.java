@@ -100,7 +100,7 @@ public class Diver implements Serializable {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String countryCode;
 
-    /* 전화처 */
+    /* 연락처 */
     @Column(name = "contact_number", length = 15)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String contactNumber;
