@@ -44,7 +44,15 @@ public class SecurityConfig {
                         httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(jwtAuthenticationEntryPoint).accessDeniedHandler(jwtAccessDeniedHandler)
                 )
                 .authorizeHttpRequests(authorizeRequests -> {
-                    authorizeRequests.requestMatchers("/api/v1/signup", "/api/v1/login").permitAll();
+                    authorizeRequests.requestMatchers(
+                            "/h2-console/**",
+                            "/favicon.ico",
+                            "/swagger-ui/**",
+                            "/swagger-resources/**",
+                            "/api-docs/**",
+                            "/api/v1/signup",
+                            "/api/v1/login"
+                    ).permitAll();
                     authorizeRequests.anyRequest().authenticated();
                 })
                 .apply(new JwtSecurityConfig(jwtTokenProvider));
