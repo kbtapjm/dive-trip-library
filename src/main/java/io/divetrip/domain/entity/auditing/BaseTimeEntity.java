@@ -25,7 +25,7 @@ public class BaseTimeEntity {
     protected LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at", nullable = true, insertable = false, updatable = true)
+    @Column(name = "updated_at", nullable = true, insertable = true, updatable = true)
     @JdbcTypeCode(SqlTypes.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected LocalDateTime updatedAt;

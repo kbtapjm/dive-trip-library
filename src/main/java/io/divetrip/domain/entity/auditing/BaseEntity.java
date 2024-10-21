@@ -18,7 +18,7 @@ public class BaseEntity extends BaseTimeEntity {
     private String createdBy;
 
     @LastModifiedBy
-    @Column(name = "updated_by", nullable = true, length = 20, insertable = false, updatable = true)
+    @Column(name = "updated_by", nullable = true, length = 20, insertable = true, updatable = true)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String updatedBy;
 
