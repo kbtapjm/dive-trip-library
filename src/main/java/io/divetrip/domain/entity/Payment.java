@@ -71,6 +71,18 @@ public class Payment extends BaseEntity {
     @Column(name = "deposit_name", length = 20)
     private String depositName;
 
+    /* 카드 번호 */
+    @Column(name = "card_number", length = 12)
+    private Integer cardNumber;
+
+    /* 카드사 명 */
+    @Column(name = "card_company_name", length = 100)
+    private String cardCompanyName;
+
+    /* 카드 명의자 명 */
+    @Column(name = "card_holder_name", length = 50)
+    private String cardHolderName;
+
     /* 여행 예약 ID */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_reservation_id", nullable = false, insertable = true, updatable = true)
