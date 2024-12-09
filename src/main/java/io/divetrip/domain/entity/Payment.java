@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -87,5 +88,10 @@ public class Payment extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_reservation_id", nullable = false, insertable = true, updatable = true)
     private TripReservation tripReservation;
+
+    @PrePersist
+    public void prePersist() {
+        this.paymentDate = LocalDateTime.now();
+    }
 
 }

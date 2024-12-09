@@ -126,4 +126,12 @@ public class TripReservation extends BaseEntity {
         this.agreeTerms = agreeTerms;
         this.note = note;
     }
+
+    public void changeReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
+    }
+
+    public void paymentCompleted() {
+        this.paid = Boolean.TRUE;
+    }
 }
