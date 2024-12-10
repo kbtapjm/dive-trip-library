@@ -64,17 +64,13 @@ public class Payment extends BaseEntity {
     @Column(name = "payment_ip", nullable = false, length = 15)
     private String paymentIp;
 
-    /* 입금 계좌 */
-    @Column(name = "deposit_account", length = 50)
-    private String depositAccount;
-
     /* 입금자 명 */
     @Column(name = "deposit_name", length = 20)
     private String depositName;
 
     /* 카드 번호 */
-    @Column(name = "card_number", length = 12)
-    private Integer cardNumber;
+    @Column(name = "card_number", length = 16)
+    private String cardNumber;
 
     /* 카드사 명 */
     @Column(name = "card_company_name", length = 100)
