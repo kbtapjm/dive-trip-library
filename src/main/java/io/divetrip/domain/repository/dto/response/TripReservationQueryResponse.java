@@ -13,6 +13,18 @@ public class TripReservationQueryResponse {
     /* 여행 예약 ID */
     private UUID tripReservationId;
 
+    /* 여행 숙소 ID */
+    private UUID tripLodgingId;
+
+    /* 다이버 ID */
+    private UUID diverId;
+
+    /* 다이버 성 */
+    private String familyName;
+
+    /* 다이버 이름 */
+    private String givenName;
+
     /* 예약 상태 */
     private ReservationStatus reservationStatus;
 
@@ -53,8 +65,14 @@ public class TripReservationQueryResponse {
     private LocalDateTime updatedAt;
 
     @QueryProjection
-    public TripReservationQueryResponse(UUID tripReservationId, ReservationStatus reservationStatus, Boolean paid, String departureFlightNumbers, LocalDateTime departureFlightDate, String arrivalFlightNumbers, LocalDateTime arrivalFlightDate, LocalDate lastDiveDate, Boolean agreeTerms, String note, String createdBy, LocalDateTime createdAt, String updatedBy, LocalDateTime updatedAt) {
+    public TripReservationQueryResponse(UUID tripReservationId, UUID tripLodgingId, UUID diverId, String familyName, String givenName, ReservationStatus reservationStatus,
+                                        Boolean paid, String departureFlightNumbers, LocalDateTime departureFlightDate, String arrivalFlightNumbers, LocalDateTime arrivalFlightDate,
+                                        LocalDate lastDiveDate, Boolean agreeTerms, String note, String createdBy, LocalDateTime createdAt, String updatedBy, LocalDateTime updatedAt) {
         this.tripReservationId = tripReservationId;
+        this.tripLodgingId = tripLodgingId;
+        this.diverId = diverId;
+        this.familyName = familyName;
+        this.givenName = givenName;
         this.reservationStatus = reservationStatus;
         this.paid = paid;
         this.departureFlightNumbers = departureFlightNumbers;

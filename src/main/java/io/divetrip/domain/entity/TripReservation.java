@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -110,20 +111,22 @@ public class TripReservation extends BaseEntity {
     @Builder.Default
     private List<Payment> payments = new ArrayList<>();
 
-    public void addStatusHistorys(TripReservationStatusHistory tripReservationStatusHistory) {
+    @PrePersist
+    public void prePersist() {
+        this.paid = Boolean.FALSE;
+    }
+
+    public void addStatusHistoryList(TripReservationStatusHistory tripReservationStatusHistory) {
         this.statusHistorys.add(tripReservationStatusHistory);
     }
 
-    public void update(ReservationStatus reservationStatus, Boolean paid, String departureFlightNumbers, LocalDateTime departureFlightDate,
-                                String arrivalFlightNumbers, LocalDateTime arrivalFlightDate, LocalDate lastDiveDate, Boolean agreeTerms, String note) {
-        this.reservationStatus = reservationStatus;
-        this.paid = paid;
+    public void update(String departureFlightNumbers, LocalDateTime departureFlightDate, String arrivalFlightNumbers,
+                       LocalDateTime arrivalFlightDate, LocalDate lastDiveDate, String note) {
         this.departureFlightNumbers = departureFlightNumbers;
         this.departureFlightDate = departureFlightDate;
         this.arrivalFlightNumbers = arrivalFlightNumbers;
         this.arrivalFlightDate = arrivalFlightDate;
         this.lastDiveDate = lastDiveDate;
-        this.agreeTerms = agreeTerms;
         this.note = note;
     }
 
