@@ -44,7 +44,6 @@ public class TripReservationRepositoryImpl implements TripReservationRepositoryC
                         diver.familyName,
                         diver.givenName,
                         tripReservation.reservationStatus,
-                        tripReservation.paid,
                         tripReservation.departureFlightNumbers,
                         tripReservation.departureFlightDate,
                         tripReservation.arrivalFlightNumbers,

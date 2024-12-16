@@ -2,6 +2,7 @@ package io.divetrip.domain.entity;
 
 import io.divetrip.domain.entity.auditing.BaseEntity;
 import io.divetrip.domain.entity.enumeration.PaymentMethod;
+import io.divetrip.domain.entity.enumeration.PaymentStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -55,6 +56,11 @@ public class Payment extends BaseEntity {
     @JdbcTypeCode(SqlTypes.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime paymentDate;
+
+    /* 결제 상태 */
+    @Column(name = "payment_status", nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
 
     /* 결제 내용 */
     @Column(name = "payment_details", length = 100)

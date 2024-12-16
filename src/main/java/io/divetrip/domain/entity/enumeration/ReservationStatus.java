@@ -9,13 +9,11 @@ import java.util.Map;
 @Getter
 @RequiredArgsConstructor
 public enum ReservationStatus {
-    RESERVATION_WAITING("예약 대기 중"),
-    RESERVATION_REQUESTED("예약 신청"),
-    PAYMENT_COMPLETED("결제 완료"),
-    PAYMENT_CANCELED("결제 취소"),
-    RESERVATION_CANCELED("예약 취소"),
-    RESERVATION_NO_SHOW("예약 부도")
-    ;
+    WAITING("예약 대기"),
+    REQUESTED("예약 신청"),
+    CANCELED("예약 취소"),
+    COMPLETED("예약 완료"),
+    NO_SHOW("예약 부도");
 
     private final String description;
 

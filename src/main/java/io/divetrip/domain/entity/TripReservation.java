@@ -14,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -50,11 +49,6 @@ public class TripReservation extends BaseEntity {
     @Column(name = "reservation_status", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
-
-    /* 결제 여부 */
-    @Column(name = "paid", nullable = false)
-    @JdbcTypeCode(SqlTypes.BOOLEAN)
-    private Boolean paid;
 
     /* 출발 편명 */
     @Column(name = "departure_flight_numbers", length = 20)
@@ -111,11 +105,6 @@ public class TripReservation extends BaseEntity {
     @Builder.Default
     private List<Payment> payments = new ArrayList<>();
 
-    @PrePersist
-    public void prePersist() {
-        this.paid = Boolean.FALSE;
-    }
-
     public void addStatusHistoryList(TripReservationStatusHistory tripReservationStatusHistory) {
         this.statusHistorys.add(tripReservationStatusHistory);
     }
@@ -134,7 +123,8 @@ public class TripReservation extends BaseEntity {
         this.reservationStatus = reservationStatus;
     }
 
-    public void paymentCompleted() {
-        this.paid = Boolean.TRUE;
+    public void tripReservationCompleted() {
+        this.reservationStatus = ReservationStatus.COMPLETED;
     }
+
 }
