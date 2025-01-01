@@ -129,6 +129,7 @@ public class Diver implements Serializable {
     })
     private Address address;
 
+    @Builder.Default
     @JsonManagedReference
     @OneToMany(mappedBy = "diver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DiverRole> diverRoles = List.of();

@@ -53,6 +53,7 @@ public class Country {
     private Integer callingCode;
 
     /* 목적지 */
+    @Builder.Default
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Destination> destinations = new ArrayList<>();
 

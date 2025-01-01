@@ -119,6 +119,7 @@ public class Vessel extends BaseEntity {
     private Boolean used;
 
     /* 선박 선실 */
+    @Builder.Default
     @OneToMany(mappedBy = "vessel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VesselCabin> vesselCabins = new ArrayList<>();
 

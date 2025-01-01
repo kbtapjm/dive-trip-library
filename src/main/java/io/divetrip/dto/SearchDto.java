@@ -26,6 +26,7 @@ public class SearchDto {
     private String orderBy;
 
     @JsonIgnore
+    @Builder.Default
     private List<Filter> filters = new ArrayList<>();
 
     @JsonIgnore

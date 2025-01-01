@@ -48,6 +48,7 @@ public class Role extends BaseEntity {
     private String note;
 
     /* 다이버 역할 목록 */
+    @Builder.Default
     @JsonBackReference
     @OneToMany(mappedBy = "role")
     private List<DiverRole> diverRoles = List.of();
