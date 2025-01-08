@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Getter
@@ -76,6 +78,14 @@ public class Trip extends BaseEntity {
     /* 다이빙 횟수 */
     @Column(name = "total_dives", nullable = false, length = 2)
     private Integer totalDives;
+
+    /* 즐겨찾기 횟수 */
+    @Column(name = "favorites", nullable = true, length = 2)
+    private Integer favorites;
+
+    /* 낙관적 잠금 구현을 위한 버전 관리 필드 */
+    @Version
+    private int version;
 
     /* 목적지 ID */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -137,5 +147,9 @@ public class Trip extends BaseEntity {
         this.totalDives = totalDives;
         this.destination = destination;
         this.vessel = vessel;
+    }
+
+    public void increaseFavorites() {
+        this.favorites = (Objects.isNull(this.favorites) ? 0 : this.favorites) + 1;
     }
 }
