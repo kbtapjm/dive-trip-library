@@ -69,4 +69,8 @@ public class Resource extends BaseEntity {
         this.resourceOrder = resourceOrder;
     }
 
+    public void updateUsed(Boolean used) {
+        this.used = used;
+    }
+
 }
