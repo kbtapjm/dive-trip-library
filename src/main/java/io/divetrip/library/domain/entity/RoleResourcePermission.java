@@ -5,9 +5,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,10 +45,16 @@ public class RoleResourcePermission {
     @Enumerated(EnumType.STRING)
     private Permission permission;
 
+    /* 등록 시간 */
     @CreatedDate
     @Column(name = "created_at", nullable = false, insertable = true, updatable = false)
     @JdbcTypeCode(SqlTypes.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
+
+    /* 역할 리소스 */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_resource_id", nullable = false, insertable = true, updatable = true)
+    private RoleResource roleResource;
 
 }
