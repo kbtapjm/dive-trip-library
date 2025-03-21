@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -64,5 +65,14 @@ public class RoleResource {
     @Builder.Default
     @OneToMany(mappedBy = "roleResource", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RoleResourcePermission> permissions = new ArrayList<>();
+
+    public void addAllPermissions(List<RoleResourcePermission> permissions) {
+        this.permissions = permissions;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 
 }
