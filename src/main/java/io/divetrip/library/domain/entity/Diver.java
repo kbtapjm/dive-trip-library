@@ -129,6 +129,11 @@ public class Diver implements Serializable {
     })
     private Address address;
 
+    /* 활성화 여부 */
+    @Column(name = "enabled", nullable = false)
+    @JdbcTypeCode(SqlTypes.BOOLEAN)
+    private Boolean enabled;
+
     @Builder.Default
     @JsonManagedReference
     @OneToMany(mappedBy = "diver", cascade = CascadeType.ALL, orphanRemoval = true)
