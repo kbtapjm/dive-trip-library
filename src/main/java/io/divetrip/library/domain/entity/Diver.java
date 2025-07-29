@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -134,10 +135,16 @@ public class Diver implements Serializable {
     @JdbcTypeCode(SqlTypes.BOOLEAN)
     private Boolean enabled;
 
+    /* 다이버 역활 목록 */
     @Builder.Default
     @JsonManagedReference
     @OneToMany(mappedBy = "diver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DiverRole> diverRoles = List.of();
+
+    /* 다이버 로그인 이력 목록 */
+    @Builder.Default
+    @OneToMany(mappedBy = "diver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DiverLoginHistory> diverLoginHistory = List.of();
 
     @Column(name = "created_by", nullable = false, length = 20, insertable = true, updatable = false)
     @JdbcTypeCode(SqlTypes.VARCHAR)
