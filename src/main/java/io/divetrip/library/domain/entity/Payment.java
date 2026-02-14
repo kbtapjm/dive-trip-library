@@ -21,6 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -49,6 +50,7 @@ public class Payment extends BaseEntity {
     private PaymentMethod paymentMethod;
 
     /* 결제 금액 */
+    @Comment("결제 금액")
     @Column(name = "payment_amount", nullable = false, length = 10)
     private Integer paymentAmount;
 

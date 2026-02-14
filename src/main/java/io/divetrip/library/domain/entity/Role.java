@@ -1,6 +1,5 @@
 package io.divetrip.library.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.divetrip.library.domain.entity.auditing.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,7 +48,6 @@ public class Role extends BaseEntity {
 
     /* 다이버 역할 목록 */
     @Builder.Default
-    @JsonBackReference
     @OneToMany(mappedBy = "role")
     private List<DiverRole> diverRoles = List.of();
 
